@@ -9,6 +9,7 @@ public class CommandRegistry
     public CommandRegistry()
     {
         Register(new PwdCommand());
+        Register(new EchoCommand());
     }
 
     private void Register(ICommand command)

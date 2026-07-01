@@ -12,7 +12,7 @@ if (string.IsNullOrWhiteSpace(commandName))
 
 if (registry.TryGetCommand(commandName, out var command))
 {
-    command.Execute(arguments);
+    command!.Execute(arguments);
 }
 else
 {
