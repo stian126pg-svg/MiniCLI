@@ -4,7 +4,7 @@ namespace MiniCLI.Core;
 
 public class CommandRegistry
 {
-    private readonly Dictionary<string, ICommand, _commands = new();
+    private readonly Dictionary<string, ICommand> _commands = new();
 
     public CommandRegistry()
     {
