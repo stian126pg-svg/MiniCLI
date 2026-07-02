@@ -1,4 +1,6 @@
-﻿using MiniCLI.Core;
+﻿// Application starter/runner. This is where the magic begins!
+
+using MiniCLI.Core;
 
 var registry = new CommandRegistry();
 

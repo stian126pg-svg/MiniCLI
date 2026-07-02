@@ -12,6 +12,8 @@ public class CommandRegistry
         Register(new EchoCommand());
         Register(new LsCommand());
         Register(new CatCommand());
+        Register(new HeadCommand());
+        Register(new TailCommand());
     }
 
     private void Register(ICommand command)
