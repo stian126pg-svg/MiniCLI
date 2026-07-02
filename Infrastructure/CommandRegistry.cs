@@ -10,6 +10,8 @@ public class CommandRegistry
     {
         Register(new PwdCommand());
         Register(new EchoCommand());
+        Register(new LsCommand());
+        Register(new CatCommand());
     }
 
     private void Register(ICommand command)
