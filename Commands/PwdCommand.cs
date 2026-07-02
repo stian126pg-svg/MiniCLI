@@ -8,6 +8,7 @@ public class PwdCommand : ICommand
 
     public void Execute(string[] args)
     {
+        // Print the current working directory.
         Console.WriteLine(Directory.GetCurrentDirectory());
     }
 }

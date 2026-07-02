@@ -8,6 +8,7 @@ public class EchoCommand : ICommand
 
     public void Execute(string[] args)
     {
+        // Print every argument as one sentence.
         Console.WriteLine(string.Join(" ", args));
     }
 }
