@@ -137,3 +137,11 @@ Possible additions include:
 - Support for command options and flags
 - Better error handling
 - Optional directory/file arguments for commands like `ls`
+
+I know for a fact I want to see about implementing `touch`, `cp` and `rm` as these can make the tool a lot more useful and versatile!
+
+---
+
+- ## Reflection
+
+This project gave me a better understanding of how command-line tools work internally. While some of the commands themselves are fairly small, designing the application in a modular way using interfaces and separate command classes was the most valuable part of the assignment. It reinforced the importance of writing reusable, maintainable code rather than putting all logic into a single file. That, and I can see how this is a very useful tool for programmers to this day despite it's simplicity and straight-forwardness.
