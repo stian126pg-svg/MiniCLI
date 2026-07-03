@@ -1,40 +1,44 @@
-# MiniCLI v1.0
+# MiniCLI v2.0
 
-A simple command-line application written in C# that recreates the functionality of several common Unix/Linux terminal commands.
+A simple command-line application written in C# that recreates several common Unix/Linux CLI commands.
 
-This project was developed as part of a programming assignment with the goal of learning how common CLI tools work "under the hood", while also practicing object-oriented design, file handling, and reusable code.
+MiniCLI was developed as a learning project to better understand how terminal commands work under the hood while practicing Object-Oriented Programming, file handling, and project organization in C#.
 
 ---
 
 ## Features
 
-The following commands have been implemented:
+Currently implemented commands:
 
 | Command | Description |
 |---------|-------------|
-| `pwd` | Displays the current working directory. |
-| `echo` | Prints text to the terminal. |
-| `ls` | Lists files and directories in the current directory. |
-| `cat` | Prints the contents of a file. |
-| `head` | Displays the first five lines of a file. |
-| `tail` | Displays the last five lines of a file. |
+| `pwd` | Display the current working directory. |
+| `echo` | Print text to the console. |
+| `ls` | List files and directories in the current directory. |
+| `cat` | Display the contents of a file. |
+| `head` | Display the first five lines of a file. |
+| `tail` | Display the last five lines of a file. |
+| `touch` | Create a new empty file. |
+| `cp` | Copy one file to another. |
+| `rm` | Delete a file. |
 
 ---
 
 ## Project Structure
-
-The project is organized into separate components to keep responsibilities clear.
 
 ```
 MiniCLI
 │
 ├── Commands
 │   ├── CatCommand.cs
+│   ├── CpCommand.cs
 │   ├── EchoCommand.cs
 │   ├── HeadCommand.cs
 │   ├── LsCommand.cs
 │   ├── PwdCommand.cs
-│   └── TailCommand.cs
+│   ├── RmCommand.cs
+│   ├── TailCommand.cs
+│   └── TouchCommand.cs
 │
 ├── Core
 │   ├── ICommand.cs
@@ -44,104 +48,104 @@ MiniCLI
 └── Program.cs
 ```
 
-### Program.cs
+---
 
-The application's entry point. It parses the user's input, looks up the requested command, and executes it.
+## Design
 
-### ICommand
+Rather than placing every command inside a large `switch` statement, each command is implemented as its own class using a shared `ICommand` interface.
 
-An interface that defines the structure every command must follow. Each command provides:
+The application flow is:
 
-- A command name
-- An `Execute()` method
+```
+Program.cs
+      │
+      ▼
+CommandParser
+      │
+      ▼
+CommandRegistry
+      │
+      ▼
+Selected Command
+      │
+      ▼
+Execute()
+```
 
-### CommandRegistry
-
-Stores all available commands in a dictionary and allows commands to be retrieved by name.
-
-### CommandParser
-
-Separates the command name from any arguments supplied by the user.
-
-### Commands
-
-Each CLI command is implemented as its own class. This keeps the code modular, reusable, and easy to extend.
+This makes the project modular, reusable, and easy to extend with additional commands.
 
 ---
 
 ## Example Usage
 
-Display the current directory:
-
 ```bash
 dotnet run pwd
 ```
-
-Print text:
-
-```bash
-dotnet run echo Hello, World!
-```
-
-List files:
 
 ```bash
 dotnet run ls
 ```
 
-Display a file:
-
 ```bash
 dotnet run cat Program.cs
 ```
 
-Display the first five lines:
-
 ```bash
-dotnet run head Program.cs
+dotnet run head README.md
 ```
 
-Display the last five lines:
+```bash
+dotnet run tail README.md
+```
 
 ```bash
-dotnet run tail Program.cs
+dotnet run touch notes.txt
+```
+
+```bash
+dotnet run cp notes.txt backup.txt
+```
+
+```bash
+dotnet run rm notes.txt
 ```
 
 ---
 
 ## What I Learned
 
-This project helped me practice and understand quite a few things! But chief among them:
+During this project I practiced:
 
-- Object-Oriented Programming (OOP)
+- Object-Oriented Programming
 - Interfaces
-- Separation of concerns
-- Working with the .NET file system (`File`, `Directory`, and `Path`)
-- Parsing command-line arguments
-- Organizing code into reusable classes
-- Using dictionaries for command lookup
+- Separation of Concerns
+- Command-line argument parsing
+- Working with the .NET File API
+- Working with the .NET Directory API
+- Using dictionaries for fast command lookup
+- Structuring projects into reusable components
 
-One of the biggest takeaways from this project was seeing how separating each command into its own class makes the application easier to understand, maintain, and extend.
+The biggest takeaway was learning how a modular architecture makes adding new commands simple without changing the application's core logic.
 
 ---
 
 ## Future Improvements
 
-Possible additions include:
+Potential future additions include:
 
-- `touch`
-- `cp`
 - `mv`
-- `rm`
 - `wc`
-- Support for command options and flags
+- `mkdir`
+- `rmdir`
+- Command options and flags
 - Better error handling
-- Optional directory/file arguments for commands like `ls`
-
-I know for a fact I want to see about implementing `touch`, `cp` and `rm` as these can make the tool a lot more useful and versatile!
+- Unit tests
+- Configurable line count for `head` and `tail`
 
 ---
 
-- ## Reflection
+## Built With
 
-This project gave me a better understanding of how command-line tools work internally. While some of the commands themselves are fairly small, designing the application in a modular way using interfaces and separate command classes was the most valuable part of the assignment. It reinforced the importance of writing reusable, maintainable code rather than putting all logic into a single file. That, and I can see how this is a very useful tool for programmers to this day despite it's simplicity and straight-forwardness.
+- C#
+- .NET 8
+- Visual Studio 2022
