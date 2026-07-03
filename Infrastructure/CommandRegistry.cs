@@ -17,6 +17,7 @@ public class CommandRegistry
         Register(new HeadCommand());
         Register(new TailCommand());
         Register(new TouchCommand());
+        Register(new CpCommand());
     }
 
     //Add a Command to the dictionary.
